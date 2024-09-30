@@ -8,6 +8,8 @@ import (
 	"github.com/vishwaszadte/fmon/process"
 )
 
+// Watch starts the watcher and runs the initial command
+// It restarts the command on file changes
 func Watch(dir string, command string) {
 	watcher, err := fsnotify.NewWatcher()
 
