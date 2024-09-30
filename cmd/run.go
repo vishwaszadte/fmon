@@ -2,10 +2,15 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/vishwaszadte/fmon/watcher"
 )
+
+// includeDir is the variable that stores the directory to watch
+var includeDir string
 
 var runCmd = &cobra.Command{
 	Use:   "run [command]",
@@ -14,17 +19,30 @@ var runCmd = &cobra.Command{
 	Run:   cmdHelper,
 }
 
+// cmdHelper is the main function that is called when the run command is executed
+// It starts the watcher and blocks the main thread until terminated
 func cmdHelper(cmd *cobra.Command, args []string) {
 	fmt.Println("Monitoring for file changes...")
+
+	absDir, err := filepath.Abs(includeDir)
+	if err != nil {
+		log.Fatalf("Invalid directory: %s", err.Error())
+	}
+
+	fmt.Printf("Watching directory: %s\n", absDir)
 	command := args[0]
 
 	// Start watching files
-	go watcher.Watch(".", command)
+	go watcher.Watch(absDir, command)
 
 	// Block the main thread until terminated
 	select {}
 }
 
 func init() {
+
+	// Define the --incl-dir flag, which is used to specify the directory to watch
+	runCmd.Flags().StringVarP(&includeDir, "incl-dir", "i", ".", "Directory to watch (default is current directory)")
+
 	rootCmd.AddCommand(runCmd)
 }
