@@ -16,12 +16,12 @@ var runCmd = &cobra.Command{
 	Use:   "run [command]",
 	Short: "Run a command and re-run it on file changes",
 	Args:  cobra.MinimumNArgs(1),
-	Run:   cmdHelper,
+	Run:   runCmdHelper,
 }
 
-// cmdHelper is the main function that is called when the run command is executed
+// runCmdHelper is the main function that is called when the run command is executed
 // It starts the watcher and blocks the main thread until terminated
-func cmdHelper(cmd *cobra.Command, args []string) {
+func runCmdHelper(cmd *cobra.Command, args []string) {
 	fmt.Println("Monitoring for file changes...")
 
 	absDir, err := filepath.Abs(includeDir)
