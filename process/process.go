@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"os/exec"
 	"time"
+
+	"github.com/vishwaszadte/fmon/utils"
 )
 
 var cmd *exec.Cmd
 
 func Start(command string) {
-	fmt.Printf("Starting process: %s\n", command)
+	fmt.Printf("%s %s\n", utils.ForegroundColorPrimary("Starting process:"), command)
 	cmd = exec.Command("bash", "-c", command)
 	cmd.Stdout = nil
 	cmd.Stderr = nil

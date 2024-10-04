@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/cobra"
+	"github.com/vishwaszadte/fmon/utils"
 	"github.com/vishwaszadte/fmon/watcher"
 )
 
@@ -22,14 +23,15 @@ var runCmd = &cobra.Command{
 // runCmdHelper is the main function that is called when the run command is executed
 // It starts the watcher and blocks the main thread until terminated
 func runCmdHelper(cmd *cobra.Command, args []string) {
-	fmt.Println("Monitoring for file changes...")
+
+	fmt.Printf("%s\n", utils.ForegroundColorPrimary("Monitoring for file changes..."))
 
 	absDir, err := filepath.Abs(includeDir)
 	if err != nil {
 		log.Fatalf("Invalid directory: %s", err.Error())
 	}
 
-	fmt.Printf("Watching directory: %s\n", absDir)
+	fmt.Printf("%s %s\n", utils.ForegroundColorPrimary("Watching directory:"), absDir)
 	command := args[0]
 
 	// Start watching files
