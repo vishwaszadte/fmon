@@ -6,6 +6,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/vishwaszadte/fmon/process"
+	"github.com/vishwaszadte/fmon/utils"
 )
 
 // Watch starts the watcher and runs the initial command
@@ -30,7 +31,7 @@ func Watch(dir string, command string) {
 		select {
 		case event := <-watcher.Events:
 			if event.Op&fsnotify.Write == fsnotify.Write {
-				fmt.Printf("File modified: %s\n", event.Name)
+				fmt.Printf("%s %s\n", utils.ForegroundColorPrimary("File modified:"), event.Name)
 				process.Restart(command)
 			}
 		case err := <-watcher.Errors:

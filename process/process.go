@@ -22,7 +22,7 @@ func Start(command string) {
 
 func Stop() {
 	if cmd != nil && cmd.Process != nil {
-		fmt.Println("Stopping process")
+		fmt.Println(utils.ForegroundColorPrimary("Stopping process"))
 		cmd.Process.Kill()
 		cmd.Wait()
 	}
