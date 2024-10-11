@@ -34,11 +34,12 @@ func runCmdHelper(cmd *cobra.Command, args []string) {
 	fmt.Printf("%s %s\n", utils.ForegroundColorPrimary("Watching directory:"), absDir)
 	command := args[0]
 
+	w := &watcher.Watcher{
+		Dir:     absDir,
+		Command: command,
+	}
 	// Start watching files
-	go watcher.Watch(absDir, command)
-
-	// Block the main thread until terminated
-	select {}
+	w.Watch()
 }
 
 func init() {
