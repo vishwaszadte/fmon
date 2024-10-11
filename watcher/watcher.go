@@ -29,8 +29,11 @@ func Watch(dir string, command string) {
 
 	for {
 		select {
-		case event := <-watcher.Events:
-			if event.Op&fsnotify.Write == fsnotify.Write {
+		case event, ok := <-watcher.Events:
+			if !ok {
+				return
+			}
+			if event.Has(fsnotify.Write) {
 				fmt.Printf("%s %s\n", utils.ForegroundColorPrimary("File modified:"), event.Name)
 				process.Restart(command)
 			}
