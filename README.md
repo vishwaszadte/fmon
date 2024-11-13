@@ -71,7 +71,7 @@ File modified: /path/to/project/main.go
 
 ## Development
 
-This project uses [watcher](github.com/radovskyb/watcher) to monitor file changes and [Cobra](github.com/spf13/cobra) for CLI functionality. To modify or extend `fmon`, explore the main files and directories:
+This project uses [watcher](https://github.com/radovskyb/watcher) to monitor file changes and [Cobra](https://github.com/spf13/cobra) for CLI functionality. To modify or extend `fmon`, explore the main files and directories:
 
 - **cmd/**: Contains CLI commands and flags.
 - **watcher/**: Manages file monitoring and detects changes.
