@@ -4,10 +4,10 @@
 
 ## Features
 
-- Directory Monitoring: Watches a specified directory (defaults to the current directory) for file changes.
-- Automatic Command Restart: Restarts a specified command whenever a change is detected.
-- Customizable Watch Directory: Use a flag to set a custom directory to monitor, accepting both relative and absolute paths.
-- Colorful Console Output: Displays monitored commands, directories, and file changes in a readable neon-green format.
+- **Directory Monitoring**: Watches a specified directory (defaults to the current directory) for file changes.
+- **Automatic Command Restart**: Restarts a specified command whenever a change is detected.
+- **Customizable Watch Directory**: Use a flag to set a custom directory to monitor, accepting both relative and absolute paths.
+- **Colorful Console Output**: Displays monitored commands, directories, and file changes in a readable neon-green format.
 
 ## Installation
 
